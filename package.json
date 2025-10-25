@@ -1,0 +1,14 @@
+{
+  "name": "pokemon-slash-command",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@vercel/node": "latest",
+    "typescript": "latest"
+  }
+}
