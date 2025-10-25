@@ -1,1 +1,2 @@
 # pokemon-slash-command
+test
