@@ -80,6 +80,16 @@ export default async function handler(req, res) {
   const jaEntry = speciesData.names.find((n) => n.language.name === "ja-Hrkt");
   const pokemonName = jaEntry ? jaEntry.name : "ポケモン";
   
+  // 世代情報
+  const generationRes = await fetch(speciesData.generation.url);
+  const generationData = await generationRes.json();
+  const generationJa = generationData.names.find((n) => n.language.name === "ja-Hrkt")?.name || "不明";
+  
+  // 地方情報
+  const regionRes = await fetch(generationData.main_region.url);
+  const regionData = await regionRes.json();
+  const regionJa = regionData.names.find((n) => n.language.name === "ja-Hrkt")?.name || "不明";
+  
   // スプライト画像URL
   const pokemonImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
@@ -95,7 +105,7 @@ export default async function handler(req, res) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `<@${payload.user.id}> No.${id}：${pokemonName}をゲット！`,
+          text: `<@${payload.user.id}> No.${id}：${pokemonName}をゲット！\n世代：${generationJa}\n生息地：${regionJa}`,
         },
       },
       {
