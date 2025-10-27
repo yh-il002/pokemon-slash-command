@@ -69,13 +69,17 @@ export default async function handler(req, res) {
 
   // ↓↓↓ ここをランダムガチャに差し替える ↓↓↓
 
-  // とりあえずホケモン固定の例
-  const pokemonName = "ポケモン";
-
   // 1〜1025のランダム整数
   const min = 1;
   const max = 1025;
   const id = Math.floor(Math.random() * (max - min + 1)) + min;
+  
+  // ポケモンの日本語名を取得
+  const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+  const speciesData = await speciesRes.json();
+  const jaEntry = speciesData.names.find((n) => n.language.name === "ja-Hrkt");
+  const pokemonName = jaEntry ? jaEntry.name : "ポケモン";
+  
   // スプライト画像URL
   const pokemonImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
@@ -91,7 +95,7 @@ export default async function handler(req, res) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `<@${payload.user.id}> ポケモンゲット！`,
+          text: `<@${payload.user.id}> **${pokemonName}** をゲット！`,
         },
       },
       {
