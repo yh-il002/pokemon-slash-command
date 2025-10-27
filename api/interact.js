@@ -69,8 +69,8 @@ export default async function handler(req, res) {
 
 	// ↓↓↓ ここをランダムガチャに差し替える ↓↓↓
 	
-	// とりあえずピカチュウ固定の例
-	// const pokemonName = "ピカチュウ";
+	// とりあえずホケモン固定の例
+	const pokemonName = "ポケモン";
 
 	// 1〜1025のランダム整数
   const min = 1;
@@ -97,6 +97,7 @@ export default async function handler(req, res) {
 			{
 				type: "image",
 				image_url: pokemonImageUrl,
+				alt_text: pokemonName,
 			},
 		],
 	};
