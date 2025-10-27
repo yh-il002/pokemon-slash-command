@@ -105,7 +105,7 @@ export default async function handler(req, res) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `<@${payload.user.id}> No.${id}：${pokemonName}をゲット！\n世代：${generationJa}\n生息地：${regionJa}`,
+          text: `<@${payload.user.id}> \nNo.${id}\n${pokemonName}をゲット！\n世代：${generationJa}\n生息地：${regionJa}`,
         },
       },
       {
