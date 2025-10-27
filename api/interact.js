@@ -1,7 +1,10 @@
 // /pages/api/interact.js
 
 export default async function handler(req, res) {
+	console.log("🔥 /api/interact called", req.method, req.headers["user-agent"]);
+
 	if (req.method !== "POST") {
+		console.log("❌ Not POST");
 		res.status(405).send("Method Not Allowed");
 		return;
 	}
