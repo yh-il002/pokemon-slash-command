@@ -95,7 +95,7 @@ export default async function handler(req, res) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `<@${payload.user.id}> **${pokemonName}** をゲット！`,
+          text: `<@${payload.user.id}> No.${id}：${pokemonName}をゲット！`,
         },
       },
       {
